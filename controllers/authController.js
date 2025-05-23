@@ -4,15 +4,57 @@ const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
   try {
-    const { fullName, email, password } = req.body;
-    const existingUser = await User.findOne({ email });
-    if (existingUser) return res.status(400).json({ msg: 'User already exists' });
+    const { fullName, country, location, number1, number2, email, password } = req.body;
+    
+    // Validation
+    if (!fullName || !country || !location || !number1 || !email || !password) {
+      return res.status(400).json({ 
+        msg: 'Please provide all required fields: fullName, country, location, number1, email, and password' 
+      });
+    }
 
+    // Check if user already exists by email or primary mobile number
+    const existingUser = await User.findOne({ 
+      $or: [
+        { email },
+        { number1 }
+      ]
+    });
+    
+    if (existingUser) {
+      return res.status(400).json({ 
+        msg: 'User already exists with this email or mobile number' 
+      });
+    }
+
+    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ fullName, email, password: hashedPassword });
-    res.status(201).json({ msg: 'User registered successfully' });
+    
+    // Create user with all fields
+    const user = await User.create({ 
+      fullName, 
+      country,
+      location,
+      number1,
+      number2: number2 || null, // Optional second number
+      email, 
+      password: hashedPassword 
+    });
+
+    // Return success response (don't send password back)
+    res.status(201).json({ 
+      msg: 'User registered successfully',
+      user: {
+        id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        country: user.country,
+        location: user.location
+      }
+    });
   } catch (err) {
-    res.status(500).json({ msg: err.message });
+    console.error('Registration error:', err);
+    res.status(500).json({ msg: 'Server error during registration' });
   }
 };
 
