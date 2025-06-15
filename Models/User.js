@@ -36,6 +36,13 @@ const userSchema = new mongoose.Schema(
       trim: true,
       maxlength: [100, "Location cannot exceed 100 characters"],
     },
+    number0: {
+      type: String,
+      required: [true, "Primary mobile number is required"],
+      unique: true,
+      trim: true,
+      match: [/^[\+]?[1-9][\d]{0,15}$/, "Please enter a valid mobile number"],
+    },
     number1: {
       type: String,
       required: [true, "Primary mobile number is required"],
