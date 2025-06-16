@@ -7,6 +7,8 @@ const authRoutes = require('./Routes/authRoutes');
 const sosRoutes = require('./routes/sos'); //
 const updatedUserRoutes = require('./Routes/auth');
 const communityRoutes = require('./Routes/community');
+const locationRoutes = require('./Routes/location');
+
 
 
 const app = express();
@@ -16,6 +18,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/sos', sosRoutes);
 app.use('/api/auth', updatedUserRoutes);
 app.use('/api/community', communityRoutes);
+app.use('/api/location', locationRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
