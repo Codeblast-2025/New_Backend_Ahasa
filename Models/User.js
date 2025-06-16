@@ -56,6 +56,10 @@ const userSchema = new mongoose.Schema(
       default: null,
       match: [/^[\+]?[1-9][\d]{0,15}$/, "Please enter a valid mobile number"],
     },
+    profilePic: {
+      type: String,
+      default: '', // or URL/base64 string
+    },
     isVerified: {
       type: Boolean,
       default: false,
