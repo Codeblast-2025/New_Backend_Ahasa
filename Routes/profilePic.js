@@ -6,7 +6,10 @@ const User = mongoose.models.User || require('../Models/User');
 
 const router = express.Router();
 const storage = multer.memoryStorage(); // store in memory
-const upload = multer({ storage });
+const upload = multer({
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 } // 5 MB
+});
 
 // PUT /api/auth/user/:id/profile-pic
 router.put('/user/:id/profile-pic', upload.single('profilePic'), async (req, res) => {
