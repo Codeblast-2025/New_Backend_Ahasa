@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+const path = require("path");
 
 const authRoutes = require('./Routes/authRoutes');
 const sosRoutes = require('./routes/sos'); //
@@ -9,6 +10,7 @@ const updatedUserRoutes = require('./Routes/auth');
 const communityRoutes = require('./Routes/community');
 const locationRoutes = require('./Routes/location');
 const profileRoutes = require('./routes/profilePic');
+const documentRoutes = require('./Routes/documents');
 
 
 
@@ -22,6 +24,10 @@ app.use('/api/auth', updatedUserRoutes);
 app.use('/api/community', communityRoutes);
 app.use('/api/location', locationRoutes);
 app.use('/uploads', express.static('uploads')); ///
+
+app.use('/api/documents', documentRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 
 app.use('/api/auth', authRoutes);
 app.use('/api/auth', profileRoutes);
