@@ -5,7 +5,7 @@ require('dotenv').config();
 const path = require("path");
 
 const authRoutes = require('./Routes/authRoutes');
-const sosRoutes = require('./routes/sos'); //
+const sosRoutes = require('./Routes/sos'); //
 const updatedUserRoutes = require('./Routes/auth');
 const communityRoutes = require('./Routes/community');
 const locationRoutes = require('./Routes/location');
@@ -32,6 +32,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/auth', profileRoutes);
+
 
 
 mongoose
