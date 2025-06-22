@@ -11,7 +11,7 @@ const communityRoutes = require('./Routes/community');
 const locationRoutes = require('./Routes/location');
 const profileRoutes = require('./routes/profilePic');
 const documentRoutes = require('./Routes/documents');
-
+const adminDocumentsRouter = require("./Routes/adminDocuments");
 
 
 const app = express();
@@ -24,6 +24,7 @@ app.use('/api/auth', updatedUserRoutes);
 app.use('/api/community', communityRoutes);
 app.use('/api/location', locationRoutes);
 app.use('/uploads', express.static('uploads')); ///
+app.use("/api/admin-documents", adminDocumentsRouter);
 
 app.use('/api/documents', documentRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
