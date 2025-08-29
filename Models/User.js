@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema(
     },
     profilePic: {
       type: String,
-      default: '', // or URL/base64 string
+      default: "", // or URL/base64 string
     },
     isVerified: {
       type: Boolean,
@@ -74,6 +74,5 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-
 //module.exports = mongoose.model("User", userSchema);
-module.exports = mongoose.models.User || mongoose.model('User', userSchema);
+module.exports = mongoose.models.User || mongoose.model("User", userSchema);

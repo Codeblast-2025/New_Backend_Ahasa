@@ -20,6 +20,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/sos', sosRoutes);
+app.use("/api/sos", require("./Routes/sos1"));
 app.use('/api/auth', updatedUserRoutes);
 app.use('/api/community', communityRoutes);
 app.use('/api/location', locationRoutes);
