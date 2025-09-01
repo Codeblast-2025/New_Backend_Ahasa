@@ -41,20 +41,20 @@ const userSchema = new mongoose.Schema(
       required: [true, "Primary mobile number is required"],
       unique: true,
       trim: true,
-      match: [/^[\+]?[1-9][\d]{0,15}$/, "Please enter a valid mobile number"],
+      match: [/^\+94\d{9}$/, "Please enter a valid mobile number"],
     },
     number1: {
       type: String,
       required: [true, "Primary mobile number is required"],
       unique: true,
       trim: true,
-      match: [/^[\+]?[1-9][\d]{0,15}$/, "Please enter a valid mobile number"],
+      match: [/^\+94\d{9}$/, "Please enter a valid mobile number"],
     },
     number2: {
       type: String,
       trim: true,
       default: null,
-      match: [/^[\+]?[1-9][\d]{0,15}$/, "Please enter a valid mobile number"],
+      match: [/^\+94\d{9}$/, "Please enter a valid mobile number"],
     },
     profilePic: {
       type: String,
