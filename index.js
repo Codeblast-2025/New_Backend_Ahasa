@@ -16,15 +16,12 @@ app.use(express.json({ limit: "2mb" }));
 // I recommend renaming the folder to `routes` and importing all from there.
 
 const authRoutes = require("./routes/authRoutes");
-const sosRoutes = require("./routes/sos");
-const sos1Routes = require("./routes/sos1");
 const updatedUserRoutes = require("./routes/auth");
 const communityRoutes = require("./routes/community");
 const locationRoutes = require("./routes/location");
 const profileRoutes = require("./routes/profilePic");
 const documentRoutes = require("./routes/documents");
 const adminDocumentsRouter = require("./routes/adminDocuments");
-const paymentRoutes = require("./routes/paymentRoutes");
 
 /* ---------- Static ---------- */
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // mount once
@@ -34,14 +31,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/auth", updatedUserRoutes); // if this overlaps with authRoutes, consider merging them
 app.use("/api/auth", profileRoutes); // profile under /api/auth (ok if intentional)
 
-app.use("/api/sos", sosRoutes);
-app.use("/api/sos", sos1Routes); // if this is an alternative, consider combining to avoid route collisions
 
 app.use("/api/community", communityRoutes);
 app.use("/api/location", locationRoutes);
 app.use("/api/documents", documentRoutes);
 app.use("/api/admin-documents", adminDocumentsRouter);
-app.use("/api/payments", paymentRoutes);
 
 /* ---------- Health ---------- */
 app.get("/health", (_req, res) => res.status(200).send("ok"));
