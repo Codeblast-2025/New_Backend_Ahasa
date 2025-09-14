@@ -15,13 +15,13 @@ app.use(express.json({ limit: "2mb" }));
 // Make sure your filesystem actually uses `routes` (all-lowercase) or `Routes` consistently.
 // I recommend renaming the folder to `routes` and importing all from there.
 
-const authRoutes = require("./routes/authRoutes");
-const updatedUserRoutes = require("./routes/auth");
-const communityRoutes = require("./routes/community");
-const locationRoutes = require("./routes/location");
-const profileRoutes = require("./routes/profilePic");
-const documentRoutes = require("./routes/documents");
-const adminDocumentsRouter = require("./routes/adminDocuments");
+const authRoutes = require("./Routes/authRoutes");
+const updatedUserRoutes = require("./Routes/auth");
+const communityRoutes = require("./Routes/community");
+const locationRoutes = require("./Routes/location");
+const profileRoutes = require("./Routes/profilePic");
+const documentRoutes = require("./Routes/documents");
+const adminDocumentsRouter = require("./Routes/adminDocuments");
 
 /* ---------- Static ---------- */
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // mount once
