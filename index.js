@@ -32,7 +32,7 @@ app.use("/api/auth", updatedUserRoutes); // if this overlaps with authRoutes, co
 app.use("/api/auth", profileRoutes); // profile under /api/auth (ok if intentional)
 
 app.get('/about', (req, res) => {
-  res.send('About route 🎉 ')
+  res.send('About routes 🎉 ')
 })
 
 app.use("/api/community", communityRoutes);
