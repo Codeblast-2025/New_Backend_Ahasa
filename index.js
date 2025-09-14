@@ -31,7 +31,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/auth", updatedUserRoutes); // if this overlaps with authRoutes, consider merging them
 app.use("/api/auth", profileRoutes); // profile under /api/auth (ok if intentional)
 
-app.get('/about', (req, res) => {
+app.get('/', (req, res) => {
   res.send('About routes 🎉 ')
 })
 
