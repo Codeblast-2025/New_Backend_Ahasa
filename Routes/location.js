@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Location = require('../models/Location');
+const Location = require('../Models/Location');
 
 // Save or update location
 router.post('/', async (req, res) => {

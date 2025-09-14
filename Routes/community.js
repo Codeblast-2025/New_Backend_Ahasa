@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../Models/User');
 
 // Get all users from the same country (case insensitive)
 router.post('/all', async (req, res) => {

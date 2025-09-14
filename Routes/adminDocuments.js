@@ -1,7 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
-const AdminDocument = require("../models/AdminDocument");
+const AdminDocument = require("../Models/AdminDocument");
 
 const router = express.Router();
 
