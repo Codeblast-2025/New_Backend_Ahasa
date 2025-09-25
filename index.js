@@ -42,6 +42,7 @@ app.use("/api/admin-documents", adminDocumentsRouter);
 
 /* ---------- Health ---------- */
 app.get("/health", (_req, res) => res.status(200).send("ok"));
+app.get("/health1", (_req, res) => res.status(200).send("ok1"));
 
 /* ---------- DB Connect & Start ---------- */
 const PORT = process.env.PORT || 5000;
