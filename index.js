@@ -6,6 +6,7 @@ require("dotenv").config();
 const path = require("path");
 
 const app = express();
+const { PORT = 5000 } = process.env;
 
 /* ---------- Middleware ---------- */
 app.use(cors({ origin: true, credentials: true }));
@@ -22,6 +23,7 @@ const locationRoutes = require("./Routes/location");
 const profileRoutes = require("./Routes/profilePic");
 const documentRoutes = require("./Routes/documents");
 const adminDocumentsRouter = require("./Routes/adminDocuments");
+const otpRoutes = require("./Routes/otpRoutes");
 
 /* ---------- Static ---------- */
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // mount once
@@ -31,21 +33,23 @@ app.use("/api/auth", authRoutes);
 app.use("/api/auth", updatedUserRoutes); // if this overlaps with authRoutes, consider merging them
 app.use("/api/auth", profileRoutes); // profile under /api/auth (ok if intentional)
 
-app.get('/', (req, res) => {
-  res.send('About routes 🎉 ')
-})
+app.get("/", (req, res) => {
+  res.send("About routes 🎉 ");
+});
 
 app.use("/api/community", communityRoutes);
 app.use("/api/location", locationRoutes);
 app.use("/api/documents", documentRoutes);
 app.use("/api/admin-documents", adminDocumentsRouter);
+app.use("/api/otp", otpRoutes);
 
 /* ---------- Health ---------- */
 app.get("/health", (_req, res) => res.status(200).send("ok"));
 app.get("/health1", (_req, res) => res.status(200).send("ok1"));
 
+
 /* ---------- DB Connect & Start ---------- */
-const PORT = process.env.PORT || 5000;
+//const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI; // prefer SRV: mongodb+srv://user:pass@cluster0.../dbname?retryWrites=true&w=majority
 
 if (!MONGO_URI) {
