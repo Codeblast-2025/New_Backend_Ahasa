@@ -59,12 +59,20 @@ const sendSms = async (req, res) => {
   const s = otpSessions.get(referenceNo);
   if (!s || !s.verified) return res.status(403).json({ error: "OTP verification required" });
 
+  // Format phone number - ensure it starts with 94 for Sri Lanka (no + sign)
+  let formattedPhone = phone.replace(/\s+/g, '').replace(/^\+/, ''); // Remove spaces and + sign
+  if (formattedPhone.startsWith('0')) {
+    formattedPhone = '94' + formattedPhone.substring(1);
+  } else if (!formattedPhone.startsWith('94')) {
+    formattedPhone = '94' + formattedPhone;
+  }
+
   const payload = {
     version: "1.0",
     applicationId: APP_ID,
     password: APP_PASSWORD,
     message,
-    destinationAddresses: [`tel:${phone}`],
+    destinationAddresses: [`tel:${formattedPhone}`],
   };
 
   try {
