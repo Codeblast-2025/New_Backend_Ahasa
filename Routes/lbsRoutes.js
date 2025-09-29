@@ -6,3 +6,5 @@ const { getLocation } = require('../controllers/locationController');
 router.post('/request', getLocation);
 
 module.exports = router;
+
+

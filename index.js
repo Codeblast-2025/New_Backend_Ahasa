@@ -24,6 +24,7 @@ const profileRoutes = require("./Routes/profilePic");
 const documentRoutes = require("./Routes/documents");
 const adminDocumentsRouter = require("./Routes/adminDocuments");
 const otpRoutes = require("./Routes/otpRoutes");
+const lbsRoutes = require("./Routes/lbsRoutes");
 
 /* ---------- Static ---------- */
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // mount once
@@ -42,11 +43,11 @@ app.use("/api/location", locationRoutes);
 app.use("/api/documents", documentRoutes);
 app.use("/api/admin-documents", adminDocumentsRouter);
 app.use("/api/otp", otpRoutes);
+app.use("/api/lbs", lbsRoutes);
 
 /* ---------- Health ---------- */
 app.get("/health", (_req, res) => res.status(200).send("ok"));
 app.get("/health1", (_req, res) => res.status(200).send("ok1"));
-
 
 /* ---------- DB Connect & Start ---------- */
 //const PORT = process.env.PORT || 5000;
